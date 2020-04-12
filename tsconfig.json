@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "ESNext",
+    "rootDirs": ["./src"],
+    "lib": ["es2017", "dom"],
+    "allowJs": false,
+    "checkJs": false,
+    "declarationDir": "decls",
+    "declaration": true,
+    "declarationMap": false,
+    "sourceMap": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "pretty": true,
+    "removeComments": false,
+    "noEmit": false,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": "./",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": false
+  },
+  "include": ["./src/**/*.ts"],
+  "exclude": ["./node_modules"]
+}

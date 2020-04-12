@@ -1,0 +1,87 @@
+{
+  "name": "sweet-scroll",
+  "version": "4.0.0",
+  "description": "Modern and the sweet smooth scroll library.",
+  "main": "sweet-scroll.js",
+  "types": "sweet-scroll.d.ts",
+  "scripts": {
+    "start": "npm-run-all -p build:watch docs",
+    "build": "npm-run-all build:bundle build:minify build:decls",
+    "build:bundle": "rollup -c",
+    "build:minify": "uglifyjs -c -m --comments -o sweet-scroll.min.js -- sweet-scroll.js",
+    "build:decls": "dts-bundle --baseDir ./ --name sweet-scroll --main decls/index.d.ts",
+    "build:watch": "yarn build:bundle --watch",
+    "prebuild": "yarn clean",
+    "clean": "rm -rf decls .rpt2_cache",
+    "test": "npm-run-all lint test:unit",
+    "test:unit": "npm-run-all test:browser test:node",
+    "test:browser": "jest --setupTestFrameworkScriptFile=./jest/setup-for-browser.js --testPathPattern \"browser.spec.ts\"",
+    "test:browser:watch": "yarn test:browser --watch",
+    "test:node": "jest --env=node --testPathPattern \"node.spec.ts\"",
+    "test:node:watch": "yarn test:node --watch",
+    "lint": "tslint -c tslint.json \"src/**/*.ts\"",
+    "docs": "npm-run-all -p docs:server docs:watch",
+    "docs:server": "browser-sync start -s docs -f \"docs/**/*\" --no-notify --no-ghost-mode --no-open",
+    "docs:build": "cpx sweet-scroll.js docs",
+    "docs:watch": "yarn docs:build --watch",
+    "docs:deploy": "gh-pages -t -d docs",
+    "format": "npm-run-all format:tslint format:prettier",
+    "format:tslint": "yarn lint --fix",
+    "format:prettier": "prettier --write \"src/**/*\" \"*.md\"",
+    "predocs:deploy": "yarn docs:build",
+    "prepublishOnly": "yarn build"
+  },
+  "files": [
+    "decls",
+    "sweet-scroll.js",
+    "sweet-scroll.min.js",
+    "sweet-scroll.d.ts"
+  ],
+  "keywords": [
+    "smooth scroll",
+    "sweet scroll",
+    "sweet",
+    "scroll",
+    "animation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tsuyoshiwada/sweet-scroll.git"
+  },
+  "author": "tsuyoshiwada",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tsuyoshiwada/sweet-scroll/issues"
+  },
+  "homepage": "https://github.com/tsuyoshiwada/sweet-scroll",
+  "devDependencies": {
+    "@types/jest": "24.0.9",
+    "browser-sync": "2.26.3",
+    "cpx": "1.5.0",
+    "dts-bundle": "0.7.3",
+    "gh-pages": "2.0.1",
+    "jest": "24.3.1",
+    "npm-run-all": "4.1.5",
+    "prettier": "1.16.4",
+    "rollup": "1.4.1",
+    "rollup-plugin-typescript2": "0.19.3",
+    "rollup-watch": "4.3.1",
+    "ts-jest": "24.0.0",
+    "tslint": "5.13.1",
+    "typescript": "3.3.3333",
+    "uglify-es": "3.3.9"
+  },
+  "jest": {
+    "preset": "ts-jest"
+  },
+  "prettier": {
+    "trailingComma": "all",
+    "printWidth": 100,
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": true,
+    "bracketSpacing": true,
+    "arrowParens": "always"
+  }
+}
